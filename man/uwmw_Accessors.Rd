@@ -1,0 +1,172 @@
+\docType{methods}
+\name{uwmw_Accessors}
+\alias{coef}
+\alias{coef,uwmwRes-method}
+\alias{esttype}
+\alias{esttype,uwmwEstimate-method}
+\alias{getOrder}
+\alias{getOrder,uwmwRes-method}
+\alias{groupinfo}
+\alias{groupinfo,uwmwEstimate-method}
+\alias{groupinfo,uwmwRes-method}
+\alias{housekeeping}
+\alias{housekeeping,uwmwEstimate-method}
+\alias{housekeeping,uwmwRes-method}
+\alias{is.unsorted}
+\alias{is.unsorted,uwmwRes-method}
+\alias{length,uwmwEstimate-method}
+\alias{length,uwmwRes-method}
+\alias{logor}
+\alias{logor,uwmwRes-method}
+\alias{names,uwmwEstimate-method}
+\alias{names,uwmwRes-method}
+\alias{oddsRatio}
+\alias{oddsRatio,uwmwRes-method}
+\alias{orderedBy}
+\alias{orderedBy,uwmwEstimate-method}
+\alias{orderedBy,uwmwRes-method}
+\alias{pval}
+\alias{pval,uwmwRes-method}
+\alias{ref}
+\alias{ref,uwmwEstimate-method}
+\alias{se}
+\alias{se,uwmwEstimate-method}
+\alias{se,uwmwRes-method}
+\alias{type}
+\alias{type,uwmwEstimate-method}
+\alias{type,uwmwRes-method}
+\alias{uwmw_Accessors}
+\alias{vcov}
+\alias{vcov,uwmwRes-method}
+\alias{zval}
+\alias{zval,uwmwRes-method}
+\title{Extract info from uwmwRes and uwmwEstimate objects}
+\usage{
+\S4method{type}{uwmwRes}(x)
+
+\S4method{type}{uwmwEstimate}(x)
+
+\S4method{housekeeping}{uwmwRes}(x)
+
+\S4method{housekeeping}{uwmwEstimate}(x)
+
+\S4method{names}{uwmwRes}(x)
+
+\S4method{names}{uwmwEstimate}(x)
+
+\S4method{logor}{uwmwRes}(x, ordered = TRUE)
+
+\S4method{se}{uwmwRes}(x, ordered = TRUE)
+
+\S4method{se}{uwmwEstimate}(x)
+
+\S4method{oddsRatio}{uwmwRes}(x, ordered = TRUE)
+
+\S4method{zval}{uwmwRes}(x, ordered = TRUE)
+
+\S4method{pval}{uwmwRes}(x, ordered = TRUE)
+
+\S4method{coef}{uwmwRes}(object)
+
+\S4method{vcov}{uwmwRes}(object)
+
+\S4method{ref}{uwmwEstimate}(x)
+
+\S4method{esttype}{uwmwEstimate}(x)
+
+\S4method{getOrder}{uwmwRes}(x)
+
+is.unsorted(x, na.rm = FALSE, strictly = FALSE)
+
+\S4method{orderedBy}{uwmwRes}(x)
+
+\S4method{orderedBy}{uwmwEstimate}(x)
+
+\S4method{groupinfo}{uwmwRes}(x)
+
+\S4method{groupinfo}{uwmwEstimate}(x)
+
+\S4method{length}{uwmwEstimate}(x)
+
+\S4method{length}{uwmwRes}(x)
+}
+\arguments{
+  \item{x}{a uwmwRes object or a uwmwEstimate object.}
+
+  \item{ordered}{logical value. If set to \code{FALSE}, the
+  extracted values are given in the original order, also
+  after a uwmwRes object has been ordered using
+  \code{\link{sort}}. Defaults to \code{TRUE}}
+
+  \item{na.rm}{for compatibility with the base function
+  \code{\link{is.unsorted}}. Ignored for uwmwRes objects.}
+
+  \item{strictly}{for compatibility with the base function
+  \code{\link{is.unsorted}}. Ignored for uwmwRes objects.}
+
+  \item{object}{an object for which the extraction of model
+  coefficients is meaningful.}
+}
+\value{
+\code{type(x)} returns the type of uWMW carried out (i.e. O
+or H for using overall respectively housekeeping expression
+as a reference.)
+
+\code{housekeeping(x)} returns the content of the
+housekeeping slot from the object. Or, in case of overall
+normalization, it returns NULL.
+
+\code{names(x)} returns the names of the genes in the
+object, and in the order defined in the object.
+
+\code{logor(x)} returns a numeric vector with the log OR
+values.
+
+\code{se(x)} returns a numeric vector with the standard
+errors on the logor.
+
+\code{oddsRatio(x)} returns a numeric vector with the odds
+ratios.
+
+\code{zval(x)} returns a numerical vector with the Z values
+contained in the object.
+
+\code{pval(x)} returns a numerical vector containing the p
+values in the object.
+
+\code{orderedBy(x)} returns the slot by which the object is
+ordered (i.e. the value of the slot orderedBy)
+
+\code{groupinfo(x)} returns the groupinfo slot, i.e. a
+character vector of length 2 that indicates in which order
+the groups are compared by uWMW.
+}
+\description{
+This help file describes different ways to access the slots
+and values contained in \code{\link{uwmwRes}} objects
+resulting from calls to \code{\link{uWMW}}, and in
+\code{\link{uwmwEstimate}} objects resulting from calls to
+\code{\link{getEstimate}}.
+}
+\examples{
+data(NBmat)
+NBtest <- uWMW(NBmat,NBgroups)
+coef(NBtest)[1:10]
+type(NBtest)
+
+# With a sorted object
+NBsort <- sort(NBtest, which="p")
+is.unsorted(NBtest)
+is.unsorted(NBsort)
+orderedBy(NBsort)
+
+# On an Estimate object
+NBlogodds <- getEstimate(NBsort,"logodds")
+se(NBlogodds)
+# and so on...
+}
+\seealso{
+\code{\link{uwmw_Extract}} for matrix like extraction of
+data.
+}
+

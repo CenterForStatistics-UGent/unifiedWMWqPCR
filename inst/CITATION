@@ -1,0 +1,17 @@
+citHeader("To cite package 'uWMWqPCR' in publications use:")
+
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+
+citEntry(entry = "Manual",
+         title = "uWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
+         author = personList(as.person("Jan De Neve"),
+                             as.person("Joris Meys")),
+         year = year,
+         note = vers,
+
+         textVersion =
+         paste0("De Neve and Meys (",
+                year,
+                "). uWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
+                vers, "."))

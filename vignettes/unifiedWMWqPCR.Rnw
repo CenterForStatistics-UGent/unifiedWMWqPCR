@@ -1,0 +1,299 @@
+\documentclass[10pt]{article}
+%\VignetteIndexEntry{Using unifiedWMWqPCR}
+%\VignetteIndexEntry{unifiedWMWqPCR}
+ 
+
+ \usepackage{graphicx}
+  \usepackage{subfigure}
+ \usepackage[english]{babel}
+ \usepackage{a4wide}
+  \usepackage{color}
+% \usepackage[cp1252]{inputenc}
+\usepackage{amssymb}
+  \usepackage{subfigure}
+ \usepackage{amsmath,amsthm}
+  \usepackage{longtable}
+ \usepackage{multirow}
+ \usepackage{times}
+ \usepackage[bf]{caption}
+ \linespread{1.0}
+ \usepackage[a4paper,plainpages=false]{hyperref} % links in pdf files
+ \usepackage{color}
+\usepackage{epstopdf}
+ \usepackage{Sweave}
+   \usepackage[utf8x]{inputenc} 
+\parskip 0.4cm
+\parindent 0cm
+
+
+\newcommand{\mb}[1]
+   {\boldsymbol{#1}}
+\newcommand{\trace}[1]
+   {\mbox{tr}\left[#1\right]}
+\newcommand{\E}[1]
+  {\mathrm{E}\left(#1\right)}
+\newcommand{\Var}[1]
+  {\mathrm{Var}\left(#1\right)}
+\newcommand{\Cov}[1]
+  {\mathrm{Cov}\left(#1\right)}
+\newcommand{\Cor}[1]
+  {\mathrm{Cor}\left(#1\right)}
+\newcommand{\norm}[2]
+  {\langle #1 , #2 \rangle}
+\newcommand{\bX}{\mb{X}}
+\newcommand{\bx}{\mb{x}}
+\newcommand{\bZ}{\mb{Z}}
+\newcommand{\bz}{\mb{z}}
+\newcommand{\bY}{\mb{Y}}
+\newcommand{\bU}{\mb{U}}
+\newcommand{\bV}{\mb{V}}
+\newcommand{\bh}{\mb{h}}
+\newcommand{\bg}{\mb{g}}
+\newcommand{\bS}{\mb{S}}
+\newcommand{\bA}{\mb{A}}
+\newcommand{\bB}{\mb{B}}
+\newcommand{\bsigma}{\mb{\Sigma}}
+\newcommand{\btheta}{\mb{\theta}}
+\newcommand{\bEta}{\mb{\eta}}
+\newcommand{\bbeta}{\mb{\beta}} 
+\newcommand{\balpha}{\mb{\alpha}}
+\newcommand{\bgamma}{\mb{\gamma}}
+\newcommand{\bphi}{\mb{\varphi}}
+\newcommand{\prob}[1]{\mathrm{P}\left( #1 \right)}
+\newcommand{\quant}[1]{\mathrm{Q}_{\tau}\left( #1 \right)}
+\newcommand{\I}[1]{\mathrm{I}\left( #1 \right)}
+\newcommand{\leqs}{\preccurlyeq}
+\newcommand{\geqs}{\succcurlyeq}
+\newcommand{\expit}{\mathrm{expit}}
+\newcommand{\logit}{\mathrm{logit}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\odds}[1]{\mathrm{odds}\left( #1 \right)}
+%\DeclareMathOperator*{\min}{min} 
+
+
+
+
+
+\title{unifiedWMWqPCR: analyzing RT-qPCR data in R with the unified Wilcoxon--Mann--Whitney test}
+\author{Jan De Neve and Joris Meys}
+
+\SweaveOpts{concordance=TRUE}
+%\SweaveOpts{concordance=TRUE}
+
+\begin{document}
+
+
+ \maketitle
+\tableofcontents
+
+The package \emph{unifiedWMWqPCR} implements the unified Wilcoxon--Mann--Whitney (uWMW) test which is designed for assessing differential expression based on reverse transcription quantitative polymerase chain reaction (RT-qPCR) data, see \cite{DeNeve2013}. In addition to the uWMW test, the package provides graphical tools for a better understanding of the data. 
+
+
+\section{Introduction}
+
+Most conventional statistical tests for analyzing RT-qPCR data require normalization before differential expression can be assessed. This normalization can have a substantial effect on the interpretation and validity of the statistical test, but this effect is often ignored. Therefore the uWMW test, as proposed in \cite{DeNeve2013}, extends the Wilcoxon--Mann--Whitney test so that the normalization is incorporated in the testing procedure. Both the effect size and the normalization have an interpretation in terms of the probability $\prob{Y \leqs Y'} := \prob{Y < Y'} + 0.5 \prob{Y = Y'}$, where $Y$ and $Y'$ denote independent responses (here quantification cycles).
+
+We employ the same notation as in \cite{DeNeve2013}. Let the random variable $Y_{ijk}$ denote the quantification cycle $C_q$ associated with feature $i \in \{1,\ldots,m+h\}$ (a feature can for example be a gene or a microRNA) of sample $j \in \{1,\ldots,n_k\}$ (a sample can for example be a tissue or a patient) in treatment group $k \in\{1,2\}$. The first $m$ features are of interest and, if available, the last $h$ features are housekeeping features that can be used for normalization (i.e. features that are known a priori not to be associated with the treatment). In the absence of (stable) housekeeping features set $h=0$. Let $Y_{i.k}$ denote the $C_q$-value of feature $i$ for a randomly selected sample in group $k$ and let $Y_{..k}$ denote the $C_q$-value of a randomly selected feature (different from a housekeeping feature) in a randomly selected sample of the treatment group $k$. Thus $Y_{..k}$ has a distribution function that is marginalized over all features ($i=1,\ldots,m$) and over all samples ($j=1,\ldots,n_k$).  We denote the $C_q$-value of a randomly selected housekeeping feature in a randomly selected sample of treatment group $k$ as $Y_{..k}^*$.
+
+
+
+
+The uWMW test tests the null hypothesis
+\begin{eqnarray}\label{Eq:H0}
+H_0: \prob{Y_{i.1} \leqs Y_{i.2}} = \Delta,
+\end{eqnarray}
+against the two-sided alternative
+\[
+H_1: \prob{Y_{i.1} \leqs Y_{i.2}} \neq \Delta.
+\]
+Here $\Delta$ denotes the normalization constant which captures variation not caused by the treatment, but due to other reasons e.g. errors in fluorescence quantification, differences in the amount of starting material and enzymatic efficiencies, among other reasons. Note that if there is no need for normalization, under the null hypothesis of no-treatment effect, $\Delta \equiv 0.5$ (i.e. it is equally likely to have up regulation in treatment group 1 than in treatment group 2), and the uWMW test is asymptotically equivalent to the Wilcoxon--Mann--Whitney test. However, for RT-qPCR data, even in the absence of a treatment effect, $\Delta \neq 0.5$ and $\Delta$ needs to be estimated from the data; see \cite{DeNeve2013} for details.
+
+In the presence of stable housekeeping features we choose
+\begin{equation}\label{Eq:Delta1}
+\Delta = \prob{Y^*_{..1} \leqs Y^*_{..2}}, 
+\end{equation}
+and  the absence of stable housekeeping features we choose
+\begin{equation}\label{Eq:Delta2}
+\Delta = \prob{Y_{..1} \leqs Y_{..2}}.
+\end{equation}
+%%We refer to \cite{DeNeve2013} for more details. 
+
+
+Null hypothesis (\ref{Eq:H0}) can be equivalently expressed in terms of the odds
+\begin{equation}\label{Eq:H0_2}
+H_0: \odds{Y_{i.1} \leqs Y_{i.2}} = \Delta'
+\end{equation}
+where $\odds{Y_{i.1} \leqs Y_{i.2}} = \prob{Y_{i.1} \leqs Y_{i.2}}/[1 - \prob{Y_{i.1} \leqs Y_{i.2}}]$ and $\Delta' = \Delta/[1-\Delta]$ or in terms of the log odds ratio
+\begin{equation}\label{Eq:H0_3}
+H_0: \log \frac{\odds{Y_{i.1} \leqs Y_{i.2}}}{\Delta'} = 0. 
+\end{equation}
+
+
+
+
+\section{Usage}
+
+
+\subsection{Overall expression normalization}\label{S_ON}
+
+We illustrate the uWMW test on the neuroblastoma microRNA (miRNA) study of \cite{Mestdagh2009}. The data are included in the package and can be loaded as follows
+<<>>=
+library('unifiedWMWqPCR')
+data(NBmat)
+dim(NBmat)
+table(NBgroups)
+max(NBmat)
+@ 
+The \texttt{NBmat} matrix contains $C_q$ values for 323 miRNAs of 61 samples and are obtained from the data of \cite{Mestdagh2009} be excluding all miRNAs with more than 85\% of undetermined values in both groups ($22$ MYCN amplified (\texttt{MNA}) samples and $39$ MYCN single copy (\texttt{MNSC}) samples) and the limit of detection is set to $35$ (i.e. all $C_q$ values exceeding $35$ are set to $35$), similar as in \cite{DeNeve2013}. 
+
+We first consider the uWMW test with \emph{overall normalization} (i.e. with normalization constant (\ref{Eq:Delta2})). The \texttt{uWMW} function is the main function and only requires the data matrix (where rows correspond to features and columns to samples) and a vector with the same length as the number of columns in the data matrix denoting the group of each sample. Note that \texttt{uWMW} can deal with several data formats, we refer to the help-file \texttt{?uWMW} for more information.    
+
+% with cache = true, compile .Rnw file in R with 
+% library(cacheSweave)
+% Sweave("vignette_unifiedWMWqPCR.Rnw", driver = cacheSweaveDriver)
+
+
+%<<cache = true>>=
+<<>>=
+uWMW.out <- uWMW(NBmat, groups = NBgroups)
+@ 
+<<>>=
+uWMW.out
+@
+
+There are several ways to extract information from \texttt{uWMW.out}:
+<<>>=
+uWMW.out[1:3]
+uWMW.out[1:3,]
+names.tmp <- rownames(NBmat)[1:3]
+names.tmp
+uWMW.out[names.tmp] 
+@
+
+The column \texttt{logor} gives the estimate of the log odds ratio in (\ref{Eq:H0_3}) with $\Delta$ given by (\ref{Eq:Delta2}) since no housekeeping features were used for normalization. To give an interpretation to these odds ratios, we need to know the group in the left hand side of the inequality in (\ref{Eq:H0}) within the probability-operator. From \texttt{Fitted probabilities} in
+<<>>=
+uWMW.out
+@
+it follows that \texttt{MNA} corresponds to the left hand side of the inequality and \texttt{MNSC} to the right hand side, i.e. $ \prob{Y_{i.\texttt{MNA}} \leqs Y_{i.\texttt{MNSC}}}$. Hence the log odds ratios correspond to $ \log( \odds{Y_{i.\texttt{MNA}} \leqs Y_{i.\texttt{MNSC}}}/\Delta')$.  The column $\texttt{se}$ gives an estimate of the standard error of the estimated log odds ratio. The column $\texttt{or}$ corresponds to the odd ratio (thus $\exp$[\texttt{logor}]), while $\texttt{z.value}$ gives the test statistic associated with the null hypothesis (\ref{Eq:H0_3}) and \texttt{p.value} is the corresponding p-value (of the two-sided alternative).  
+
+
+Similar as in \cite{DeNeve2013} we can consider the miRNAs of the \emph{miR-17-92} and the \emph{miR-181} cluster of which the miRNAs are believed to be up regulated when MYCN is amplified \cite{Mestdagh2009}. 
+<<>>=
+selection.miRNA <- c("hsa-mir-17-3p", "hsa-mir-17-5p", "hsa-mir-18a", 
+"hsa-mir-18a#","hsa-mir-19a", "hsa-mir-19b",
+"hsa-mir-20a","hsa-mir-92", "hsa-mir-181a", "hsa-mir-181b")
+uWMW.out[selection.miRNA]
+@
+Note that the p-values are unadjusted for multiple comparisons and, for example, the \texttt{p.adjust} function of the \emph{stats} package can be used to adjust them.
+<<>>=
+adj.pvalues <- p.adjust(uWMW.out@p.value, method = "BH")
+selection.id <- match(selection.miRNA, names(uWMW.out))
+adj.pvalues[selection.id]
+@
+
+Consider the miRNA \texttt{hsa-mir-92} to illustrate the interpretation. From
+<<>>=
+uWMW.out["hsa-mir-92"]
+adj.pvalues[match("hsa-mir-92", names(uWMW.out))]
+@  
+it follows that the odds for upregulation when MYCN is amplified (i.e. lower $C_q$ values in \texttt{MNA}) relative to the overall odds is estimated by \Sexpr{round(uWMW.out["hsa-mir-92"][3],1)} and this odds ratio is significantly different from one at the 5\% level of significance adjusted for multiplicity ($p=$\Sexpr{round(adj.pvalues[match("hsa-mir-92", names(uWMW.out))], 5)}). Thus, when MYCN is amplified, it is more likely that \texttt{hsa-mir-92} is upregulated.
+
+
+
+\subsection{Housekeeping normalization}
+
+If stable housekeeping features are available, housekeeping normalization can be considered. Since the dataset \texttt{NBdata} does not contain such features, for the sake of illustration, we (incorrectly) assume that the first two features are housekeeping features. 
+<<>>=
+housekeeping.miRNA <- rownames(NBmat)[1:2]
+housekeeping.miRNA
+@
+%<<cache = true>>=
+<<>>=
+uWMW.out2 <- uWMW(NBmat, groups = NBgroups, 
+housekeeping.names = housekeeping.miRNA)
+@
+<<>>=
+uWMW.out2
+@ 
+Now $\Delta$ (\ref{Eq:Delta1}) is estimated based on the features given in \texttt{housekeeping.names}. All steps of Section \ref{S_ON} can be repeated.  
+
+
+
+
+\section{Graphical tools}
+
+
+In order to visualize the estimated effect sizes as well as the magnitude of the p-value, a Volcano plot can be constructed.
+<<label=volcano,include=FALSE>>=
+volcanoplot(uWMW.out, add.ref = c("both"), ref.x = c(-log(2),log(2)), 
+ref.y = -log10(0.001))
+@
+The plot is shown in Figure \ref{fig:voclcano}. The x-axis gives the estimated log odds ratios and the y-axis  $-\log_{10}(p)$ with $p$ the (unadjusted) p-value. The vertical lines are set $-\log(2)$ and $\log(2)$ which corresponds to an odds ratio of respectively 0.5 and 2. For example, miRNAs with an estimated odds ratio exceeding 2\footnote{i.e. the estimated odds that the miRNA is upregulated in the \texttt{MNA} group is a least twice the overall odds (which is assumed to exhibit non-differential expression)} are on the right hand side of the right vertical line.  miRNAs above the horizontal line have an unadjusted p-value less than $0.001$. It is also possible to make the volcano plot based on adjusted p-values, we refer the help-files for more information.
+
+\begin{figure}
+\begin{center}
+<<label=volcano,fig=TRUE,echo=FALSE>>=
+<<volcano>>
+@
+\end{center}
+\caption{Volcano plot of all miRNAs}
+\label{fig:voclcano}
+\end{figure}
+
+Figure \ref{fig:forest} shows a forest plot for the miRNAs of the \emph{miR-17-92} and the \emph{miR-181} cluster. Instead of plotting the odds ratio's, the forest plot has the option to plot the estimated probabilities given in (\ref{Eq:H0}) with 95\% confidence intervals (unadjusted for multiplicity). The red diamond on the bottom of the plot shows the estimated $\Delta$ and corresponding confidence interval. For \texttt{hsa-mir-181b}, for example, the probability $\prob{Y_{\texttt{MNA}} \leqs Y_{\texttt{MNSC}}}$ is estimated by $0.59$ with a 95\% confidence interval of $[0.44, 0.73]$. 
+
+This probability is not significantly different from $0.5$ at the 5\% level of significance (ignoring the multiplicity for the moment). However, in a RT-qPCR setting, the estimated probability should not be compared to $0.5$ but to $\Delta$ which is estimated by $0.37$ with a 95\% confidence interval of $[0.36 , 0.38]$. Since the estimated probability of \texttt{hsa-mir-181b} is substantially higher than $0.37$, this indicates an upregulation in the \texttt{MNA} group (recall that lower $C_q$ values are associated with higher expressions). 
+
+Furthermore, since the limits of the confidence interval of $\Delta$ are substantially different from $0.5$, this may indicate that normalization was necessary for this dataset. 
+
+<<label=forest,include=FALSE>>=
+x.label <- expression("estimated "*P(Y[MNA] < Y[MNSC]))
+forestplot(uWMW.out, estimate = "p", order = selection.id, xlab = x.label) 
+@
+
+\begin{figure}[htbp!]
+\begin{center}
+<<label=forest,fig=TRUE,echo=FALSE>>=
+<<forest>>
+@
+\end{center}
+\caption{Forest plot for the miRNAs of the \emph{miR-17-92} and the \emph{miR-181} cluster}
+\label{fig:forest}
+\end{figure}
+
+\section{Additional information}
+
+In \cite{DeNeve2013} it is shown how the uWMW test can be reformulated as a regression problem upon using probabilistic index models \cite{Thas2012}. More specifically, they consider the model
+\begin{equation}\label{EqPIM}
+\prob{Y_{i.1} \leqs Y_{i.2}} = \expit(\beta_0 + \beta_i),
+\end{equation}
+where $\expit(x) = \exp(x)/[1 + \exp(x)]$. The estimated coefficients of the model and the estimated variance-covariance matrix can be obtained as follows (we only show the first three elements)
+<<>>=
+coef(uWMW.out)[1:3]
+vcov(uWMW.out)[1:3,1:3]
+@
+%The intercept corresponds to $\beta_0$ and the other coefficients to $\beta_i$ for the associated miRNA. The estimated $\Delta$ (\ref{Eq:Delta2}) and a corresponding 95\% confidence interval can be obtained as follows.
+%<<>>=
+%# estimate
+%(Delta <- plogis(coef(uWMW.out)[1]))
+%# lower limit
+%(LL.Delta <- plogis(coef(uWMW.out)[1] - qnorm(0.975)*sqrt(vcov(uWMW.out)[1,1])))
+%# upper limit
+%(UL.Delta <- plogis(coef(uWMW.out)[1] + qnorm(0.975)*sqrt(vcov(uWMW.out)[1,1])))
+%@
+
+
+\begin{thebibliography}{9}
+
+\bibitem{DeNeve2013}
+ De Neve, J. Thas, O. Ottoy, J.P. and Clement L. (2013) An extension of the Wilcoxon--Mann--Whitney test for analyzing RT-qPCR data. \emph{Statistical Applications in Genetics and Molecular Biology}. \textbf{12}, 333-346.
+ 
+\bibitem{Mestdagh2009} 
+Mestdagh, P. Van Vlierberghe, P. De Weer, A. Muth, D. Westermann, F. Speleman, F. and Vandesompele, J. (2009) A novel and universal method for microRNA RT-qPCR data normalization. \emph{Genome Biology}. \textbf{10}, R64. 
+ 
+\bibitem{Thas2012}
+Thas, O. De Neve, J. Clement, L. and Ottoy, JP. (2012) Probabilistic index models. \emph{Journal of the Royal Statistical Society - Series B}. \textbf{74}, 623-671.
+\end{thebibliography}
+
+
+\end{document}
