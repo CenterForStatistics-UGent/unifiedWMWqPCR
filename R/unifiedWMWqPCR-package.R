@@ -1,12 +1,15 @@
 #' Unified Wilcoxon-Mann Whitney Test for qPCR data.
 #'
-#' \tabular{ll}{
-#' Package: \tab unifiedWMWqPCR\cr
-#' Type: \tab Package\cr
-#' Version: \tab 0.99.4\cr
-#' Date: \tab 2014-02-21\cr
-#' License: \tab GPL-2\cr
-#' }
+#' This package allows you to carry out the unified Wilcoxon-Mann Whitney
+#' Test for qPCR data. If you use this package for research purposes, 
+#' please cite the following article:
+#' 
+#' De Neve, Jan; Meys, Joris; Ottoy, Jean-Pierre; Clement, Lieven and Thas,
+#' Olivier. "UnifiedWMWqPCR: The unified Wilcoxon-Mann-Whitney test for
+#' analyzing RT-qPCR data in R." Bioinformatics(2014): Vol.30, Issue 17,
+#' pp.2494-2495.
+#' 
+#' Or see \code{citation("unifiedWMWqPCR")}
 #' 
 #' @import methods
 #' @importClassesFrom HTqPCR qPCRset

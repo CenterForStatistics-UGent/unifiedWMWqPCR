@@ -1,10 +1,27 @@
-citHeader("To cite package 'uWMWqPCR' in publications use:")
+citHeader("To cite package 'unifiedWMWqPCR' in publications use:")
 
 year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
 vers <- paste("R package version", meta$Version)
 
+citEntry(entry = "article",
+title="unifiedWMWqPCR: the unified Wilcoxon-Mann-Whitney test for analyzing RT-qPCR data in R",
+  author=personList(as.person("Jan De Neve"),
+                    as.person("Joris Meys"),
+                    as.person("Jean-Pierre Ottoy"),
+                    as.person("Lieven Clement"),
+                    as.person("Olivier Thas")
+),
+  journal="Bioinformatics",
+  volume="30",
+  number="17",
+  pages="2494-2495",
+  year="2014",
+  publisher="Oxford Univ Press",
+  textVersion="De Neve, Jan; Meys, Joris; Ottoy, Jean-Pierre; Clement, Lieven and Thas, Olivier. \"UnifiedWMWqPCR: The unified Wilcoxon-Mann-Whitney test for analyzing RT-qPCR data in R.\" Bioinformatics(2014): Vol.30, Issue 17, pp.2494-2495."
+)
+
 citEntry(entry = "Manual",
-         title = "uWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
+         title = "unifiedWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
          author = personList(as.person("Jan De Neve"),
                              as.person("Joris Meys")),
          year = year,
@@ -13,5 +30,5 @@ citEntry(entry = "Manual",
          textVersion =
          paste0("De Neve and Meys (",
                 year,
-                "). uWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
+                "). unifiedWMWqPCR: unified Wilcoxon-Mann-Whitney Test for qPCR data.",
                 vers, "."))
