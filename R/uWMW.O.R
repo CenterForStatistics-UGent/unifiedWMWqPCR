@@ -32,7 +32,9 @@ uWMW.O <- function(data, groups)
                            apply(d.m,1, sandwich3.f, g1, g2)/4)
   Middle <- Middle1 + Middle2 - Middle3
   
-  cov.beta <- solve(Outer)%*%Middle%*%solve(Outer)
+  invOuter <- solve(Outer)
+  
+  cov.beta <- invOuter %*% Middle %*% invOuter
   logOR <- c(beta.est[-1], -sum(beta.est[-1]))
   names(logOR) <- rownames(d.m)
   SE <- c(sqrt(diag(cov.beta))[-1], sqrt(sum(cov.beta[-1,-1])))             

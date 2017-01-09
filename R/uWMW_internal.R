@@ -10,7 +10,7 @@
 .uWMW <- function(data, groups, housekeeping.names = NULL)
 {
   if(sum(is.element(housekeeping.names, rownames(data))) != length(housekeeping.names)) 
-    stop("One or more housekeeping features names are not valid, please check for typo's")
+    stop("One or more housekeeping features names are not valid, please check for typos")
   if(length(groups) != ncol(data))
     stop("Length of 'groups' is not equal to the number of columns of 'data' ")
   

@@ -57,7 +57,9 @@ uWMW.H <- function(data, groups, housekeeping.names)
                          boolean.hkp = boolean.hkp)
   Middle <- Middle1 + Middle2 - Middle3
   
-  cov.beta <- solve(Outer)%*%Middle%*%solve(Outer)
+  invOuter <- solve(Outer)
+  
+  cov.beta <- invOuter %*% Middle %*% invOuter
   return(list(logOR = beta.est[-1], SE = sqrt(diag(cov.beta))[-1], 
               coef = beta.est, vcov = cov.beta))
 }

@@ -5,11 +5,17 @@
 #schattersfunctie op basis van wilcox
 wmw.f <- function(x, g1, g2) 
 {
-  x <- as.matrix(x)
-  res <- wilcox.test(x[g2,], x[g1,], alternative = "two.sided", 
-                     paired = FALSE, exact = FALSE, corrrect= FALSE, na.omit = TRUE)
-  n1 <- length(na.omit(x[g1,]))
-  n2 <- length(na.omit(x[g2,]))
-  PI.est <- res[["statistic"]]/(n1*n2)
+  # deals with missing values as well (see wilcox.test.default)
+  x <- x[is.finite(x)]
+  
+  #Calculation of the W statistics (with g2 as group 1 !!!)
+  x1 <- x[g2]
+  x2 <- x[g1]
+  r <- rank(c(x1,x2))
+  n1 <- as.double(length(x1))
+  n2 <- as.double(length(x2))
+  W <- sum(r[seq_along(x1)]) - n1 *(n1+1) / 2
+  
+  PI.est <- W/(n1*n2)
   return(c(PI.est, n1 = n1, n2 = n2))
 }

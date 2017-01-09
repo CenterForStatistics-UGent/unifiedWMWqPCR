@@ -4,6 +4,7 @@
 #' 
 #' The features can be extracted using the row index, and the estimates as 
 #' 
+#' @param x a \code{\link{uwmwRes}} object
 #' @param i numeric or character vector
 #' @param j optional numeric or character vector
 #' @param drop logical value. If set to FALSE and the result of the extraction is a single row or column, dimensions are dropped. Defaults to \code{TRUE}.
@@ -38,7 +39,6 @@
 # method [] method
 #' @export
 #' @rdname uwmw_Extract
-#' @aliases [,uwmwRes,character,ANY-method [,uwmwRes,character-method
 setMethod("[",signature(x="uwmwRes",i="character",j="ANY"),
           function(x,i,j,drop=TRUE){
             id <- match(i,names(x),0L)
@@ -53,7 +53,6 @@ setMethod("[",signature(x="uwmwRes",i="character",j="ANY"),
 # method [] method
 #' @export
 #' @rdname uwmw_Extract
-#' @aliases [,uwmwEstimate,character,ANY-method [,uwmwEstimate,character-method
 setMethod("[",signature(x="uwmwEstimate",i="character",j="ANY"),
           function(x,i,j,drop=TRUE){
             id <- match(i,names(x),0L)
@@ -69,7 +68,6 @@ setMethod("[",signature(x="uwmwEstimate",i="character",j="ANY"),
 # method [] method
 #' @export
 #' @rdname uwmw_Extract
-#' @aliases [,uwmwRes,ANY,ANY-method [,uwmwRes,ANY-method
 setMethod("[",signature(x="uwmwRes",i="ANY",j="ANY"),
           function(x,i,j,drop=TRUE){
             Narg <- nargs() - 1
@@ -89,7 +87,6 @@ setMethod("[",signature(x="uwmwRes",i="ANY",j="ANY"),
 # method [] method
 #' @export
 #' @rdname uwmw_Extract
-#' @aliases [,uwmwEstimate,ANY,ANY-method [,uwmwEstimate,ANY-method
 setMethod("[",signature(x="uwmwEstimate",i="ANY",j="ANY"),
           function(x,i,j,drop=TRUE){
             Narg <- nargs() - 1

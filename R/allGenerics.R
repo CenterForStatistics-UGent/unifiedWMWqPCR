@@ -11,12 +11,14 @@ setGeneric("volcanoplot",function(fit,...) standardGeneric("volcanoplot"))
 setGeneric("getEstimate",function(x,...) standardGeneric("getEstimate"))
 
 #' @export
+#' @rdname sort.uwmwRes
 setGeneric("unorder", function(x,...) standardGeneric("unorder"))
 
 #' @export
 setGeneric("uWMW",function(x,...) standardGeneric("uWMW"))
 
 #' @export
+#' @rdname uwmw_Accessors
 setGeneric("type",function(x) standardGeneric("type"))
 
 #' @export

@@ -2,8 +2,8 @@ Package: unifiedWMWqPCR
 Type: Package
 Title: Unified Wilcoxon-Mann Whitney Test for testing differential
     expression in qPCR data
-Version: 1.11.0
-Date: 2014-12-19
+Version: 1.11.1
+Date: 2017-01-09
 Author: Jan R. De Neve & Joris Meys
 Maintainer: Joris Meys <Joris.Meys@UGent.be>
 Description: This packages implements the unified Wilcoxon-Mann-Whitney
@@ -20,8 +20,8 @@ Imports:
 Collate:
     'Datasets.R'
     'S3Generics.R'
-    'uwmwRes_Class.R'
     'uwmwEstimate_Class.R'
+    'uwmwRes_Class.R'
     'allGenerics.R'
     'as.matrix.uwmwEstimate.R'
     'as.matrix.uwmwRes.R'
@@ -50,3 +50,4 @@ Collate:
 biocViews: DifferentialExpression, GeneExpression,
     MicrotitrePlateAssay, MultipleComparison, QualityControl,
     Software, Visualization, qPCR
+RoxygenNote: 5.0.1

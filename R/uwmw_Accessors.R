@@ -34,7 +34,6 @@
 
 #' @return \code{type(x)} returns the type of uWMW carried out (i.e. O or H for using overall respectively housekeeping expression as a reference.)
 #' @rdname uwmw_Accessors
-#' @aliases type,uwmwRes-method
 setMethod("type",signature(x="uwmwRes"),
           function(x) x@type)
 
@@ -46,7 +45,6 @@ setMethod("type",signature(x="uwmwEstimate"),
 # housekeeping accessor
 #' @return \code{housekeeping(x)} returns the content of the housekeeping slot from the object. Or, in case of overall normalization, it returns NULL.
 #' @rdname uwmw_Accessors
-#' @aliases housekeeping,uwmwRes-method
 setMethod("housekeeping",signature(x="uwmwRes"),
           function(x) x@housekeeping)
 #' @rdname uwmw_Accessors
@@ -59,7 +57,6 @@ setMethod("housekeeping",signature(x="uwmwEstimate"),
 #' @rdname uwmw_Accessors
 #' @return \code{names(x)} returns the names of the genes in the object, and in the order defined in the object.
 #' @rdname uwmw_Accessors
-#' @aliases names,uwmwRes-method
 setMethod("names",signature(x="uwmwRes"),
           function(x){
             if(!is.unsorted(x))
@@ -68,7 +65,6 @@ setMethod("names",signature(x="uwmwRes"),
               x@names
           } )
 #' @rdname uwmw_Accessors
-#' @aliases names,uwmwEstimate-method
 setMethod("names",signature(x="uwmwEstimate"),
           function(x){
               x@names
@@ -79,7 +75,6 @@ setMethod("names",signature(x="uwmwEstimate"),
 # logor accessor
 #' @return \code{logor(x)} returns a numeric vector with the log OR values.
 #' @rdname uwmw_Accessors
-#' @aliases logor,uwmwRes-method
 setMethod("logor",signature(x="uwmwRes"),
           function(x,ordered=TRUE){
             if(ordered)
@@ -92,7 +87,6 @@ setMethod("logor",signature(x="uwmwRes"),
 #' @return \code{se(x)} returns a numeric vector with the standard errors on the logor.
 
 #' @rdname uwmw_Accessors
-#' @aliases se,uwmwRes-method
 setMethod("se",signature(x="uwmwRes"),
           function(x,ordered=TRUE){
             if(ordered)
@@ -102,7 +96,6 @@ setMethod("se",signature(x="uwmwRes"),
           } )
 
 #' @rdname uwmw_Accessors
-#' @aliases se,uwmwEstimate-method
 setMethod("se",signature(x="uwmwEstimate"),
           function(x){
               x@se
@@ -144,7 +137,8 @@ setMethod("pval",signature(x="uwmwRes"),
               x@p.value
           } )
 
-# coef method
+# coef method\
+#' @param object see \code{x}
 #' @rdname uwmw_Accessors
 #' @aliases coef,uwmwRes-method
 #' @export

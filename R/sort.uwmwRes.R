@@ -29,7 +29,6 @@
 #' @aliases unorder
 #' @export
 #' @docType methods
-#' @aliases sort,uwmwRes-method
 #' @export
 setMethod("sort",signature="uwmwRes",function(x,decreasing=FALSE,which=c("or","p","se","name","z"),na.last=TRUE,...){
   which <- match.arg(which)
@@ -43,7 +42,6 @@ setMethod("sort",signature="uwmwRes",function(x,decreasing=FALSE,which=c("or","p
 }  )
 
 #' @rdname sort.uwmwRes
-#' @aliases unorder,ANY-method
 #' @export
 setMethod("unorder",
           signature="ANY",
@@ -53,7 +51,6 @@ setMethod("unorder",
           })
 
 #' @rdname sort.uwmwRes
-#' @aliases unorder,uwmwRes-method
 #' @export
 setMethod("unorder",
           signature="uwmwRes",
@@ -66,7 +63,6 @@ setMethod("unorder",
           })
 # Just to make sure that they don't try this one.
 #' @rdname sort.uwmwRes
-#' @aliases order,uwmwRes-method
 setMethod("order",
           signature="uwmwRes",
           function(...,na.last=TRUE,decreasing=FALSE
