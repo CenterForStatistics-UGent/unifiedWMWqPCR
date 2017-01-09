@@ -79,7 +79,7 @@ type(x)
 
 \S4method{getOrder}{uwmwRes}(x)
 
-is.unsorted(x, na.rm = FALSE, strictly = FALSE)
+is.unsorted(x, na.rm = FALSE, strictly = FALSE, ...)
 
 \S4method{orderedBy}{uwmwRes}(x)
 

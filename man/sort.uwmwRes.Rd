@@ -18,7 +18,8 @@ unorder(x, ...)
 
 \S4method{unorder}{uwmwRes}(x, ...)
 
-\S4method{order}{uwmwRes}(..., na.last = TRUE, decreasing = FALSE)
+\S4method{order}{uwmwRes}(..., na.last = TRUE, decreasing = FALSE,
+  method = c("shell", "radix"))
 }
 \arguments{
 \item{x}{a uwmwRes object}
