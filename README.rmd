@@ -1,5 +1,5 @@
 ---
-title: "pim package"
+title: "unifiedWMWqPCR"
 output: github_document
 ---
 
@@ -9,7 +9,10 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-[![Build_Status](https://travis-ci.org/CenterForStatistics-UGent/pim.svg?branch=master)](https://travis-ci.org/CenterForStatistics-UGent/pim)
+<!-- [![Build_Status](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR.svg?branch=master)](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR)
+
+This doesn't work yet, as travis is not setup correctly for 
+bioconductor packages -->
 
 
 ## Overview
