@@ -11,9 +11,8 @@ env:
   - MAKEFLAGS="-j 2"
 
 include:
-- r: release
-- r: oldrel
-- r: devel
+- r: bioc-release
+- r: bioc-devel
 
 before_script:
 - mkdir -p ~/.R; echo 'PKG_CXXFLAGS := ${PKG_CXXFLAGS} -Wall -Wextra -pedantic -Werror' > ~/.R/Makevars
