@@ -2,10 +2,8 @@ unifiedWMWqPCR
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<!-- [![Build_Status](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR.svg?branch=master)](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR)
+[![Build\_Status](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR.svg?branch=master)](https://travis-ci.org/CenterForStatistics-UGent/unifiedWMWqPCR)
 
-This doesn't work yet, as travis is not setup correctly for 
-bioconductor packages -->
 Overview
 --------
 

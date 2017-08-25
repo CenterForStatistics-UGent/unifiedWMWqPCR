@@ -2,6 +2,7 @@
 # copied from dplyr
 
 language: r
+r: bioc-devel
 sudo: false
 cache: packages
 
@@ -10,12 +11,5 @@ env:
   - _R_CHECK_FORCE_SUGGESTS_=false
   - MAKEFLAGS="-j 2"
 
-include:
-- r: bioc-release
-- r: bioc-devel
-
 before_script:
 - mkdir -p ~/.R; echo 'PKG_CXXFLAGS := ${PKG_CXXFLAGS} -Wall -Wextra -pedantic -Werror' > ~/.R/Makevars
-
-after_success:
-- Rscript -e 'covr::codecov()'
