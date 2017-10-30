@@ -2,7 +2,7 @@ Package: unifiedWMWqPCR
 Type: Package
 Title: Unified Wilcoxon-Mann Whitney Test for testing differential
     expression in qPCR data
-Version: 1.13.0
+Version: 1.14.0
 Date: 2017-01-09
 Author: Jan R. De Neve & Joris Meys
 Maintainer: Joris Meys <Joris.Meys@UGent.be>
