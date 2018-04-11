@@ -2,8 +2,8 @@
 % Please edit documentation in R/uwmwEstimate_Class.R
 \docType{class}
 \name{uwmwEstimate-class}
-\alias{uwmwEstimate}
 \alias{uwmwEstimate-class}
+\alias{uwmwEstimate}
 \title{The class uwmwEstimate}
 \description{
 This class represents an estimate object resulting from a call to \code{\link{getEstimate}}. It contains all information about the estimate, including standard errors and confidence intervals if requested. For this class a number of methods is foreseen, including the accessors for the slots. The class is sortable and can be indexed, so you can use this for making custom forest plots using the function \code{\link{forestplot}}.
@@ -33,4 +33,3 @@ For this class, \code{\link{show}} and \code{\link{length}} methods are defined.
 \author{
 Joris Meys
 }
-

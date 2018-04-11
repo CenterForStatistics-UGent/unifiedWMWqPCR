@@ -2,45 +2,47 @@
 % Please edit documentation in R/allGenerics.R, R/uwmw_Accessors.R
 \docType{methods}
 \name{type}
+\alias{type}
+\alias{uwmw_Accessors}
+\alias{type}
 \alias{coef}
-\alias{coef,uwmwRes-method}
+\alias{vcov}
+\alias{ref}
+\alias{logor}
 \alias{esttype}
-\alias{esttype,uwmwEstimate-method}
 \alias{getOrder}
-\alias{getOrder,uwmwRes-method}
-\alias{groupinfo}
-\alias{groupinfo,uwmwEstimate-method}
-\alias{groupinfo,uwmwRes-method}
 \alias{housekeeping}
-\alias{housekeeping,uwmwEstimate-method}
+\alias{orderedBy}
+\alias{pval}
+\alias{se}
+\alias{zval}
+\alias{oddsRatio}
+\alias{groupinfo}
+\alias{type,uwmwRes-method}
+\alias{type,uwmwEstimate-method}
 \alias{housekeeping,uwmwRes-method}
+\alias{housekeeping,uwmwEstimate-method}
+\alias{names,uwmwRes-method}
+\alias{names,uwmwEstimate-method}
+\alias{logor,uwmwRes-method}
+\alias{se,uwmwRes-method}
+\alias{se,uwmwEstimate-method}
+\alias{oddsRatio,uwmwRes-method}
+\alias{zval,uwmwRes-method}
+\alias{pval,uwmwRes-method}
+\alias{coef,uwmwRes-method}
+\alias{vcov,uwmwRes-method}
+\alias{ref,uwmwEstimate-method}
+\alias{esttype,uwmwEstimate-method}
+\alias{getOrder,uwmwRes-method}
 \alias{is.unsorted}
 \alias{is.unsorted,uwmwRes-method}
+\alias{orderedBy,uwmwRes-method}
+\alias{orderedBy,uwmwEstimate-method}
+\alias{groupinfo,uwmwRes-method}
+\alias{groupinfo,uwmwEstimate-method}
 \alias{length,uwmwEstimate-method}
 \alias{length,uwmwRes-method}
-\alias{logor}
-\alias{logor,uwmwRes-method}
-\alias{names,uwmwEstimate-method}
-\alias{names,uwmwRes-method}
-\alias{oddsRatio}
-\alias{oddsRatio,uwmwRes-method}
-\alias{orderedBy}
-\alias{orderedBy,uwmwEstimate-method}
-\alias{orderedBy,uwmwRes-method}
-\alias{pval}
-\alias{pval,uwmwRes-method}
-\alias{ref}
-\alias{ref,uwmwEstimate-method}
-\alias{se}
-\alias{se,uwmwEstimate-method}
-\alias{se,uwmwRes-method}
-\alias{type}
-\alias{type,uwmwEstimate-method}
-\alias{uwmw_Accessors}
-\alias{vcov}
-\alias{vcov,uwmwRes-method}
-\alias{zval}
-\alias{zval,uwmwRes-method}
 \title{Extract info from uwmwRes and uwmwEstimate objects}
 \usage{
 type(x)
@@ -79,7 +81,7 @@ type(x)
 
 \S4method{getOrder}{uwmwRes}(x)
 
-is.unsorted(x, na.rm = FALSE, strictly = FALSE, ...)
+is.unsorted(x, na.rm = FALSE, strictly = FALSE)
 
 \S4method{orderedBy}{uwmwRes}(x)
 
@@ -148,4 +150,3 @@ se(NBlogodds)
 \seealso{
 \code{\link{uwmw_Extract}} for matrix like extraction of data.
 }
-

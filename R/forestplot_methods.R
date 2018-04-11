@@ -1,17 +1,17 @@
 # TODO : indication of significance
 
 #' Making a forest plot of the results of uWMW
-#' 
-#' This function creates a forest plot indicating the (log) odds ratios, the (log) odds or the probabilities for the results of the unified Wilcoxon-Mann-Whitney test.  
-#' 
-#' The function has methods for uwmwRes and uwmwEstimate objects. When called for an uwmwRes object, the requested estimate is first calculated using \code{\link{getEstimate}} and the result is passed on to the next method. 
-#' 
+#'
+#' This function creates a forest plot indicating the (log) odds ratios, the (log) odds or the probabilities for the results of the unified Wilcoxon-Mann-Whitney test.
+#'
+#' The function has methods for uwmwRes and uwmwEstimate objects. When called for an uwmwRes object, the requested estimate is first calculated using \code{\link{getEstimate}} and the result is passed on to the next method.
+#'
 #' Note that in either case, it is not possible to use the function on a subset of either type of object. The subsetting functions for \code{uwmwRes} and \code{uwmwEstimate} objects return matrices, and hence necessary information on the reference value is lost. To plot a subset of your data, use the \code{order} argument as shown in the examples.
-#' 
-#' Adding a reference value to the plot only makes sense when plotting the log(odds), odds or probabilities. If log(OR) or OR are plotted, \code{addfit} is set to FALSE. 
-#' 
-#' The default settings plot a reference line at a location depending on the plotted estimate. For log(OR), the line is plotted at \code{refline = 0}. For OR, the line is plotted at \code{refline = 1}. 
-#' 
+#'
+#' Adding a reference value to the plot only makes sense when plotting the log(odds), odds or probabilities. If log(OR) or OR are plotted, \code{addfit} is set to FALSE.
+#'
+#' The default settings plot a reference line at a location depending on the plotted estimate. For log(OR), the line is plotted at \code{refline = 0}. For OR, the line is plotted at \code{refline = 1}.
+#'
 #' @param x An object of class uwmwRes or uwmwEstimate.
 #' @param ... parameters passed down to the internal functions. These can be any of the following.
 #' @param estimate An optional character string defining which measure should be plotted. It can take the values \code{logor}, \code{or}, \code{logodds}, \code{odds} or \code{p} (for displaying the probability of differential expression, not the p-value!). Defaults to logor. Note that this argument is ignored when plotting an uwmwEstimate object.
@@ -31,48 +31,49 @@
 #' @param ilab optional vector or matrix with character strings providing additional information that can be plotted next to the genes.
 #' @param ilab.xpos Vector of numerical values specifying the x axis positions of the character vectors given via ilab. This has to be specified when ilab is specified.
 #' @param ilab.pos integer from 1 to 4 specifying the alignment of the character vector(s) given via ilab (2 is right aligned, 4 is left aligned). Default is to center the labels.
-#' @param order optional character string, character vector or numerical vector specifying how the genes should be ordered. 
+#' @param order optional character string, character vector or numerical vector specifying how the genes should be ordered.
 #' @param transf optional argument specifying the name of a function that should be used to transform the observed effect sizes, summary estimates, fitted values and confidence interval bounds (e.g., \code{transf=exp}). Defaults to \code{FALSE}, which means that no transformation is used.
 #' @param atransf optional argument specifying the name of a function that should be used to transform the x-axis labels and annotations (e.g., transf=exp). Defaults to \code{FALSE}, which means that no transformation is used.
 #' @param targs optional arguments needed by the function specified via transf or atransf.
 #' @param rows optional vector specifying the horizontal position for the plotted results. If unspecified, the layout happens automatically. See Details and Examples for more information.
 #' @param efac numerical value specifying the vertical expansion of the arrows, summary estimate symbols and Ci limits. Normally the default of 1 should work just fine.
-#' @param pch plotting symbol used for the observed effect sizes. By default, it's a filled square. 
+#' @param pch plotting symbol used for the observed effect sizes. By default, it's a filled square.
 #' @param psize optional vector with the point sizes for the observed effects. If set to \code{NULL}, the point sizes are drawn proportional to the value of the log of the test statistic. Defaults to 1.
 #' @param cex optional numerical value for expansion of text and symbols. See also \code{\link{par}}.
 #' @param cex.lab Optional numerical value for expansion of the axis title.
-#' @param cex.axis Optional numerical value for expansion of the x axis labels. 
+#' @param cex.axis Optional numerical value for expansion of the x axis labels.
 #' @param col character string specifying the color used for the individual estimates.
 #' @param border character string specifying the color used for the border of the individual estimates.
 #' @param refcol Character string specyfying the color of the reference line. Defaults to red.
 #' @param predcol character string specifying the color of the estimated reference value. Ignored if estimate is \code{logor} or \code{or}.
-#' 
+#'
 #' @return NULL invisibly
-#' 
-#' @author This code is adapted by Joris Meys from the function \code{forest.rma} (\code{metafor} package). The original function is written by W. Viechtbauer. 
-#' 
-#' @note Thanks to the work of W.Viechtbauer, \code{forestplot} provides many possibilities for tweaking and customizing the plots. Many of the arguments work the same as in the function \code{forest.rma} (\code{metafor} package). You can always check the help file of \code{forest.rma} for more illustrations on the different arguments. 
-#' 
-#' @note This function is currently implemented using an internal function that expects an uwmwEstimate object. In a future version, the internal function will be rewritten to be more generic. This will enable the definition of methods for other classes without need to change the internal function itself. 
-#' 
+#'
+#' @author This code is adapted by Joris Meys from the function \code{forest.rma} (\code{metafor} package). The original function is written by W. Viechtbauer.
+#'
+#' @note Thanks to the work of W.Viechtbauer, \code{forestplot} provides many possibilities for tweaking and customizing the plots. Many of the arguments work the same as in the function \code{forest.rma} (\code{metafor} package). You can always check the help file of \code{forest.rma} for more illustrations on the different arguments.
+#'
+#' @note This function is currently implemented using an internal function that expects an uwmwEstimate object. In a future version, the internal function will be rewritten to be more generic. This will enable the definition of methods for other classes without need to change the internal function itself.
+#'
 #' @section Warning:
-#'  Although the internal function is shown here (merely for illustration of the arguments and defaults), the user shouldn't be calling this one directly. The function is not exported. 
-#' 
+#'  Although the internal function is shown here (merely for illustration of the arguments and defaults), the user shouldn't be calling this one directly. The function is not exported.
+#'
 #' @examples
-#' 
+#'
 #' data(NBmat)
 #' NBtest <- uWMW(NBmat, groups=NBgroups)
 #' sigid <- which(pval(NBtest) < 0.05)
 #' forestplot(NBtest,"logodds",order=sigid)
-#' 
+#'
 #' nameid <- c("hsa-mir-30a-3p","hsa-mir-30a-5p")
 #' forestplot(NBtest,"p",order=nameid,addfit=FALSE,
 #'            refline=NA,main="Comparison 30a")
-#' 
+#'
 #' forestplot(NBtest,"p",order=nameid,addfit=FALSE,
 #'            refline=0.5,main="Comparison 30a",
 #'            alim=c(0,1),xlim=c(-1,2),at=c(0,0.5,1))
-#' 
+#'
+#' @importFrom graphics par abline strheight segments polygon axis mtext points
 #' @include uwmwRes_Class.R uwmwEstimate_Class.R
 #' @name forestplot
 #' @rdname forestplot-methods
@@ -89,11 +90,11 @@ setMethod('forestplot',
           signature="uwmwRes",
           function(x,estimate=c("logor","logodds","or","odds","p"),
                    level=0.95,...){
-            
+
             estimate <- match.arg(estimate)
-            
+
             est <- getEstimate(x,estimate,ci=level)
-            
+
             forestplot(est,level=level,...)
           })
 
@@ -102,69 +103,69 @@ setMethod('forestplot',
 setMethod('forestplot',
           signature="uwmwEstimate",
           function(x,...){
-             forestplot.internal(x,...)  
+             forestplot.internal(x,...)
           })
 
 #' @rdname forestplot-methods
-forestplot.internal <- function (x,                     
-                        annotate = TRUE,                      
+forestplot.internal <- function (x,
+                        annotate = TRUE,
                         addfit = TRUE,
                         xlim = NULL,      # Horizontal limit
-                        alim = NULL, 
+                        alim = NULL,
                         ylim = NULL,
-                        at = NULL, 
-                        steps = 5, 
-                        level = 0.95, 
-                        digits = 2, 
+                        at = NULL,
+                        steps = 5,
+                        level = 0.95,
+                        digits = 2,
                         refline = NULL,
-                        xlab = NULL, 
-                        slab = NULL, 
-                        mlab = NULL, 
-                        ilab = NULL, 
+                        xlab = NULL,
+                        slab = NULL,
+                        mlab = NULL,
+                        ilab = NULL,
                         ilab.xpos = NULL,
-                        ilab.pos = NULL, 
-                        order = NULL, 
-                        transf = FALSE, 
+                        ilab.pos = NULL,
+                        order = NULL,
+                        transf = FALSE,
                         atransf = FALSE,
-                        targs = NULL, 
-                        rows = NULL, 
-                        efac = 1, 
-                        pch = 15, 
+                        targs = NULL,
+                        rows = NULL,
+                        efac = 1,
+                        pch = 15,
                         psize = 1,
-                        col = "darkgrey", 
-                        border = "darkgrey", 
-                        cex = NULL, 
+                        col = "darkgrey",
+                        border = "darkgrey",
+                        cex = NULL,
                         cex.lab = NULL,
-                        cex.axis = NULL, 
+                        cex.axis = NULL,
                         refcol="red",
                         predcol=refcol, ...)
 {
-  
-  
-  
+
+
+
   # Control arguments
   estimate <- esttype(x)
-  
+
   if(estimate !='logor'){
     if(transf | atransf) warning("transf/atransf arguments are ignored when measure is not 'logor'.")
     transf <- atransf <- FALSE
   }
-  
+
   na.act <- getOption("na.action")
   if (!is.element(na.act, c("na.omit", "na.exclude", "na.fail",
                             "na.pass")))
     stop("Unknown 'na.action' specified under options().")
-  
+
   transf.char <- deparse(substitute(transf))
   atransf.char <- deparse(substitute(atransf))
   if (transf.char != "FALSE" && atransf.char != "FALSE")
     stop("Use either 'transf' or 'atransf' to specify a transformation (not both).")
-  
+
   names.x <- names(x)
   # Check order and reorder observations if necessary.
   estmat <- as.matrix(x)
   if(!is.null(order)){
-    if(is.character(order)) order <- match(order,names.x,0L)  
+    if(is.character(order)) order <- match(order,names.x,0L)
     yi <- estmat[order,"est"]         # estimate
     ci.lb <- estmat[order,"ll"]       # ll ci
     ci.ub <- estmat[order,"ul"]       # ul ci
@@ -180,16 +181,16 @@ forestplot.internal <- function (x,
   k <- length(yi)                     # number of estimates
 
   vi[which(vi<=0)] <- NA   # Make sure all variances are valid
-  
+
   # Reference value
-  
+
   if(!estimate %in% c("logor","or") ){
-    
+
     preds <- ref(x)
     b  <- preds['refest']
     b.ci.lb <- preds['ll']
-    b.ci.ub <- preds['ul']    
-    
+    b.ci.ub <- preds['ul']
+
   } else {
     addfit <- FALSE
   }
@@ -201,11 +202,11 @@ forestplot.internal <- function (x,
                       "logodds" =,
                       "odds" = ,
                       "p" = b)
-  
+
   ## CONSTRUCTION OF THE PLOT
-  
+
   # Determining the rows
-  
+
   if (is.null(rows)) {
     rows <- seq_len(k)
   }
@@ -216,27 +217,27 @@ forestplot.internal <- function (x,
   }
   if (length(rows) != length(yi))
     stop("Number of outcomes does not correspond to the length of the rows argument.")
-  
+
   # Get the labels if necessary
   if (is.null(slab)) {
     slab <- names.x
-    
+
   }
-  
+
   if (length(yi) != length(slab))
     stop("Number of outcomes does not correspond to the length of the slab argument.")
-  
+
   if (is.vector(ilab))
     ilab <- cbind(ilab)
-  
+
   # Take care of the pch
   if (length(pch) == 1L)
     pch <- rep(pch, k)
-  
+
   if (length(pch) != length(yi))
     stop("Number of outcomes does not correspond to the length of the pch argument.")
   options(na.action = "na.exclude")
-  
+
   # Check psize
   if (!is.null(psize)) {
     if (length(psize) == 1L)
@@ -244,22 +245,22 @@ forestplot.internal <- function (x,
     if (length(psize) != length(yi))
       stop("Number of outcomes does not correspond to the length of the psize argument.")
   }
-  
+
   if (is.null(psize)) {
     if (any(is.na(vi))) {
       psize <- rep(1, k)
     }
     else {
       psize <- vi/sum(vi, na.rm = TRUE)
-      psize <- (psize - min(psize, na.rm = TRUE)) / 
+      psize <- (psize - min(psize, na.rm = TRUE)) /
         (max(psize,na.rm = TRUE) - min(psize, na.rm = TRUE))
       psize <- (psize * 1) + 0.5
     }
   }
-  
-  
-  ## 
-  
+
+
+  ##
+
   rng <- max(ci.ub, na.rm = TRUE) - min(ci.lb, na.rm = TRUE)
   if (annotate) {
     plot.multp.l <- 1.2
@@ -273,7 +274,7 @@ forestplot.internal <- function (x,
     axis.multp.l <- 0.2
     axis.multp.r <- 0.2
   }
-  
+
   if (is.null(xlim)) {
     xlim <- c(min(ci.lb, na.rm = TRUE) - rng * plot.multp.l,
               max(ci.ub, na.rm = TRUE) + rng * plot.multp.r)
@@ -329,7 +330,7 @@ forestplot.internal <- function (x,
     at[at > alim[2]] <- alim[2]
     at <- unique(at)
   }
-  
+
   at.lab <- at
 
   at.lab <- round(at.lab, digits)
@@ -360,27 +361,27 @@ forestplot.internal <- function (x,
     cex.lab <- par("cex") * cex.adj
   if (is.null(cex.axis))
     cex.axis <- par("cex") * cex.adj
-  
+
   if (is.numeric(refline))
     segments(refline, ylim[1] - 5, refline, ylim[2] - 2,
              lty = "dotted", col=refcol, ...)
-  
-  if (addfit) {    
-    
+
+  if (addfit) {
+
     polygon(x = c(b.ci.lb, b, b.ci.ub, b), y = c(-1, -1 +
                                                    (height/100) * cex * efac, -1, -1 - (height/100) *
                                                    cex * efac), col = predcol, ...)
     if (is.null(mlab))
       mlab <- paste("Reference",estimate)
     text(xlim[1], -1, mlab, pos = 4, cex = cex, ...)
-  }  
+  }
 
-  
+
   axis(side = 1, at = at, labels = at.lab, cex.axis = cex.axis,
        ...)
-  
+
   if(is.null(xlab)) xlab <- paste("Observed Outcome:",estimate)
-  
+
   if (!is.null(xlab))
     mtext(xlab, side = 1, at = min(at) + (max(at) - min(at))/2,
           line = 2.5, cex = cex.lab, ...)
@@ -423,10 +424,10 @@ forestplot.internal <- function (x,
            cex = cex, ...)
     }
   }
-  
+
   if (annotate) {
-    
-    
+
+
       if (addfit) {
         annotext <- round(cbind(c(yi, b), c(ci.lb, b.ci.lb),
                                 c(ci.ub, b.ci.ub)), digits)
@@ -434,14 +435,14 @@ forestplot.internal <- function (x,
       else {
         annotext <- round(cbind(yi, ci.lb, ci.ub), digits)
       }
-    
-    
-    
+
+
+
     annotext <- matrix(apply(annotext, 2, format, nsmall = digits),
                          ncol = 3)
     annotext <- cbind(annotext[, 1], " [ ", annotext[,
                                                        2], " , ", annotext[, 3], " ]")
-    
+
     annotext <- apply(annotext, 1, paste, collapse = "")
     if (addfit) {
       text(x = xlim[2], c(rows, -1), labels = annotext,
@@ -456,7 +457,7 @@ forestplot.internal <- function (x,
   if ( addfit)
     abline(h = 0, ...)
   invisible()
-  
-  
+
+
 }
 

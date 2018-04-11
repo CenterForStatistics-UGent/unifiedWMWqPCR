@@ -2,8 +2,9 @@
 % Please edit documentation in R/as.matrix.uwmwEstimate.R
 \docType{methods}
 \name{as.matrix.uwmwEstimate}
-\alias{as.matrix,uwmwEstimate-method}
 \alias{as.matrix.uwmwEstimate}
+\alias{as.matrix.uwmwEstimate}
+\alias{as.matrix,uwmwEstimate-method}
 \title{S3 method as.matrix for uwmwEstimate objects.}
 \usage{
 \method{as.matrix}{uwmwEstimate}(x, ...)
@@ -38,4 +39,3 @@ as.matrix(NBtest)
 \author{
 Joris Meys
 }
-

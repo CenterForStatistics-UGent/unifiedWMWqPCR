@@ -2,8 +2,9 @@
 % Please edit documentation in R/as.matrix.uwmwRes.R
 \docType{methods}
 \name{as.matrix.uwmwRes}
-\alias{as.matrix,uwmwRes-method}
 \alias{as.matrix.uwmwRes}
+\alias{as.matrix.uwmwRes}
+\alias{as.matrix,uwmwRes-method}
 \title{S3 method as.matrix for uwmwRes objects.}
 \usage{
 \method{as.matrix}{uwmwRes}(x, ...)
@@ -35,4 +36,3 @@ NBtest <- uWMW(NBmat, groups=NBgroups)
 as.matrix(NBtest)
 
 }
-

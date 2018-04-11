@@ -2,9 +2,9 @@
 % Please edit documentation in R/unifiedWMWqPCR-package.R
 \docType{package}
 \name{unifiedWMWqPCR-package}
-\alias{uWMWqPCR}
-\alias{unifiedWMWqPCR}
 \alias{unifiedWMWqPCR-package}
+\alias{unifiedWMWqPCR}
+\alias{uWMWqPCR}
 \title{Unified Wilcoxon-Mann Whitney Test for qPCR data.}
 \description{
 This package allows you to carry out the unified Wilcoxon-Mann Whitney
@@ -19,4 +19,3 @@ pp.2494-2495.
 
 Or see \code{citation("unifiedWMWqPCR")}
 }
-

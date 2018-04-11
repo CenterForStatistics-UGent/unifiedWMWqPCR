@@ -29,4 +29,3 @@ plot(NBtest)
 \seealso{
 \code{\link{forestplot}}
 }
-

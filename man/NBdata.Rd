@@ -3,8 +3,8 @@
 \docType{data}
 \name{NBdata}
 \alias{NBdata}
-\alias{NBgroups}
 \alias{NBmat}
+\alias{NBgroups}
 \title{Documentation for the dataset NBdata}
 \description{
 The example data used in this package, are a subset of the data provided by Mestdagh et al. (2009). The subset contains quantification cycles of 323 microRNAs in 61 neuroblastoma (NB) tumor samples: 22 MYCN amplified (called MNA) and 39 MYCN single copy samples (called MNSC). The subset was selected so that all microRNAs with a least 85% undetermined values in both groups were removed, see De Neve et al. (2013) for details.
@@ -37,4 +37,3 @@ Mestdagh, P., P. Van Vlierberghe, A. De Weer, D. Muth, F. Westermann, F. Spelema
 De Neve, J. Thas, O. Ottoy, J.P. and Clement L. (2013) An extension of the Wilcoxon-Mann-Whitney test for analyzing RT-qPCR data. Statistical Applications in Genetics and Molecular Biology. 12, 333-346.
 }
 \keyword{data}
-

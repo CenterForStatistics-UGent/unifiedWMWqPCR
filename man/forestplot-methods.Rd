@@ -4,8 +4,8 @@
 \name{forestplot}
 \alias{forestplot}
 \alias{forestplot,ANY-method}
-\alias{forestplot,uwmwEstimate-method}
 \alias{forestplot,uwmwRes-method}
+\alias{forestplot,uwmwEstimate-method}
 \alias{forestplot.internal}
 \title{Making a forest plot of the results of uWMW}
 \usage{
@@ -118,6 +118,7 @@ This function is currently implemented using an internal function that expects a
 
  Although the internal function is shown here (merely for illustration of the arguments and defaults), the user shouldn't be calling this one directly. The function is not exported.
 }
+
 \examples{
 
 data(NBmat)
@@ -137,4 +138,3 @@ forestplot(NBtest,"p",order=nameid,addfit=FALSE,
 \author{
 This code is adapted by Joris Meys from the function \code{forest.rma} (\code{metafor} package). The original function is written by W. Viechtbauer.
 }
-

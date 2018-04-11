@@ -2,11 +2,11 @@
 % Please edit documentation in R/uWMW_Extract.R
 \docType{methods}
 \name{uwmw_Extract}
-\alias{Extract}
-\alias{[,uwmwEstimate,ANY-method}
+\alias{uwmw_Extract}
+\alias{[,uwmwRes,character-method}
 \alias{[,uwmwEstimate,character-method}
 \alias{[,uwmwRes,ANY-method}
-\alias{uwmw_Extract}
+\alias{[,uwmwEstimate,ANY-method}
 \title{Extract data from uwmwRes and uwmwEstimate objects.}
 \usage{
 \S4method{[}{uwmwRes,character}(x, i, j, drop = TRUE)
@@ -47,7 +47,7 @@ str(NBtest["hsa-mir-1",,drop=FALSE])
 str(NBtest["hsa-mir-1",])
 # These two give the same data, but in a different way:
 se(NBtest) # unnamed
-NBtest[,"se"] # 
+NBtest[,"se"] #
 
 # With an uwmwEstimate object
 NBodds <- getEstimate(NBtest,"odds")
@@ -56,4 +56,3 @@ NBodds[gnames]
 NBodds[gnames,c("ll","ul")]
 
 }
-

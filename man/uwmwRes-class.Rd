@@ -2,8 +2,8 @@
 % Please edit documentation in R/uwmwRes_Class.R
 \docType{class}
 \name{uwmwRes-class}
-\alias{uwmwRes}
 \alias{uwmwRes-class}
+\alias{uwmwRes}
 \title{Class uwmwRes}
 \description{
 This class represents the results of the unified Wilcoxon-Mann-Whitney test. It contains all necessary information for the vulcano and forest plots. For this class a number of methods is foreseen, among which accessors for every slot.
@@ -29,10 +29,10 @@ For this class, \code{\link{show}} and \code{\link{length}} methods are defined.
    \item{\code{groupinfo}:}{character vector of length 2, indicating the groups. This slot is mainly used to show how the probabilistic indices are calculated.}  
 }
 }
-\author{
-Joris Meys
-}
+
 \seealso{
 \code{\link{uwmw_Accessors}}
 }
-
+\author{
+Joris Meys
+}

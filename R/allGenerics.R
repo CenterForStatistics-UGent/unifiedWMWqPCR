@@ -1,6 +1,7 @@
 #' @include uwmwRes_Class.R uwmwEstimate_Class.R
 #' @importFrom BiocGenerics sort
-#' 
+#' @importFrom stats na.omit qnorm plogis pnorm
+#'
 #' @export
 setGeneric("forestplot",function(x,...) standardGeneric("forestplot"))
 
@@ -11,7 +12,7 @@ setGeneric("volcanoplot",function(fit,...) standardGeneric("volcanoplot"))
 setGeneric("getEstimate",function(x,...) standardGeneric("getEstimate"))
 
 #' @export
-#' @rdname sort.uwmwRes
+#' @rdname sort_uwmwRes
 setGeneric("unorder", function(x,...) standardGeneric("unorder"))
 
 #' @export

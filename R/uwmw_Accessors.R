@@ -1,25 +1,25 @@
 #' Extract info from uwmwRes and uwmwEstimate objects
-#' 
-#' This help file describes different ways to access the slots and values contained in \code{\link{uwmwRes}} objects resulting from calls to \code{\link{uWMW}}, and in \code{\link{uwmwEstimate}} objects resulting from calls to \code{\link{getEstimate}}. 
-#' 
+#'
+#' This help file describes different ways to access the slots and values contained in \code{\link{uwmwRes}} objects resulting from calls to \code{\link{uWMW}}, and in \code{\link{uwmwEstimate}} objects resulting from calls to \code{\link{getEstimate}}.
+#'
 #' @param x a uwmwRes object or a uwmwEstimate object.
 #' @param ordered logical value. If set to \code{FALSE}, the extracted values are given in the original order, also after a uwmwRes object has been ordered using \code{\link{sort}}. Defaults to \code{TRUE}
 #' @param na.rm for compatibility with the base function \code{\link{is.unsorted}}. Ignored for uwmwRes objects.
 #' @param strictly for compatibility with the base function \code{\link{is.unsorted}}. Ignored for uwmwRes objects.
-#' 
+#'
 #' @seealso \code{\link{uwmw_Extract}} for matrix like extraction of data.
 #' @examples
 #' data(NBmat)
 #' NBtest <- uWMW(NBmat,NBgroups)
 #' coef(NBtest)[1:10]
 #' type(NBtest)
-#' 
+#'
 #' # With a sorted object
 #' NBsort <- sort(NBtest, which="p")
 #' is.unsorted(NBtest)
 #' is.unsorted(NBsort)
 #' orderedBy(NBsort)
-#' 
+#'
 #' # On an Estimate object
 #' NBlogodds <- getEstimate(NBsort,"logodds")
 #' se(NBlogodds)
@@ -27,13 +27,14 @@
 
 #' @name uwmw_Accessors
 #' @rdname uwmw_Accessors
-#' @aliases type coef vcov ref logor esttype getOrder housekeeping orderedBy pval se zval oddsRatio groupinfo
+#' @aliases type coef vcov ref logor esttype getOrder housekeeping orderedBy pval se zval oddsRatio groupinfo type,uwmwRes-method
 #' @docType methods
 #' @include uwmwRes_Class.R uwmwEstimate_Class.R allGenerics.R S3Generics.R
 #' @importFrom stats coef vcov
 
 #' @return \code{type(x)} returns the type of uWMW carried out (i.e. O or H for using overall respectively housekeeping expression as a reference.)
 #' @rdname uwmw_Accessors
+#' @name type
 setMethod("type",signature(x="uwmwRes"),
           function(x) x@type)
 
@@ -45,6 +46,7 @@ setMethod("type",signature(x="uwmwEstimate"),
 # housekeeping accessor
 #' @return \code{housekeeping(x)} returns the content of the housekeeping slot from the object. Or, in case of overall normalization, it returns NULL.
 #' @rdname uwmw_Accessors
+#' @aliases housekeeping,uwmwRes-method
 setMethod("housekeeping",signature(x="uwmwRes"),
           function(x) x@housekeeping)
 #' @rdname uwmw_Accessors
@@ -54,9 +56,9 @@ setMethod("housekeeping",signature(x="uwmwEstimate"),
 
 # names accessor
 #' @export
-#' @rdname uwmw_Accessors
 #' @return \code{names(x)} returns the names of the genes in the object, and in the order defined in the object.
 #' @rdname uwmw_Accessors
+#' @aliases names,uwmwRes-method
 setMethod("names",signature(x="uwmwRes"),
           function(x){
             if(!is.unsorted(x))
@@ -65,6 +67,7 @@ setMethod("names",signature(x="uwmwRes"),
               x@names
           } )
 #' @rdname uwmw_Accessors
+#' @aliases names,uwmwEstimate-method
 setMethod("names",signature(x="uwmwEstimate"),
           function(x){
               x@names

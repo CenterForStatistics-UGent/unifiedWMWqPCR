@@ -3,10 +3,10 @@
 \docType{methods}
 \name{volcanoplot}
 \alias{volcanoplot}
-\alias{volcanoplot,MArrayLM-method}
+\alias{volcanoplot,uwmwRes-method}
 \alias{volcanoplot,matrix-method}
 \alias{volcanoplot,numeric-method}
-\alias{volcanoplot,uwmwRes-method}
+\alias{volcanoplot,MArrayLM-method}
 \title{Make a volcano plot of the outcome of a uWMW test}
 \usage{
 \S4method{volcanoplot}{uwmwRes}(fit, esttype = c("logor", "or", "logodds",
@@ -54,4 +54,3 @@ volcanoplot(NB.Htest,"p")
 \author{
 Joris Meys
 }
-

@@ -2,10 +2,10 @@
 % Please edit documentation in R/uWMW_methods.R
 \docType{methods}
 \name{uWMW,matrix-method}
-\alias{uWMW}
-\alias{uWMW,data.frame-method}
 \alias{uWMW,matrix-method}
+\alias{uWMW}
 \alias{uWMW,qPCRset-method}
+\alias{uWMW,data.frame-method}
 \title{The unified Wilcoxon-Mann-Whitney test for qPCR data}
 \usage{
 \S4method{uWMW}{matrix}(x, groups, housekeeping.names = NULL,
@@ -55,13 +55,12 @@ head(NBtest)
 as.matrix(NBtest)
 
 }
-\author{
-Wrapper methods are written by Joris Meys. Internal functions are written by Jan De Neve.
-}
 \references{
 De Neve, J. Thas, O. Ottoy, J.P. and Clement L. (2013) An extension of the Wilcoxon-Mann-Whitney test for analyzing RT-qPCR data. Statistical Applications in genetics and Molecular Biology. 12, 333-346
 }
 \seealso{
 \code{\link{uwmw_Accessors}} and \code{\link{uwmw_Extract}} for accessing the results, and \code{\link{volcanoplot}} and \code{\link{forestplot}} for plotting them.
 }
-
+\author{
+Wrapper methods are written by Joris Meys. Internal functions are written by Jan De Neve.
+}
