@@ -1,0 +1,10 @@
+unifiedWMWqPCR v1.15.1 (Release date: 2018-04-23)
+======================
+
+This version is a maintenance update to remedy warnings during build
+
+Changes:
+
+ * Update help pages to include all correct arguments and usage sections
+ * explicitly import all needed functions from graphics and stats
+ * export the order method
