@@ -51,7 +51,7 @@ See Details for more explanation.
 The function can only calculate standard errors for the log OR and
 the log odds. In all other cases, \code{se.fit} is ignored. The function
 takes into account a possible ordering in the object
-(see also \code{\link[unifiedWMWqPCR]{sort}}). So take into account that you
+(see also \code{\link[unifiedWMWqPCR:sort_uwmwRes]{sort}}). So take into account that you
 get the estimates in the specified order. In case you want this different,
 either use the function \code{\link{unorder}} on the object first,
 or check if any of the \code{\link{uwmw_Accessors}} can help you out.
