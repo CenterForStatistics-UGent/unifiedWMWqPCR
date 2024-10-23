@@ -8,7 +8,7 @@
 \title{Unified Wilcoxon-Mann Whitney Test for qPCR data.}
 \description{
 This package allows you to carry out the unified Wilcoxon-Mann Whitney
-Test for qPCR data. If you use this package for research purposes, 
+Test for qPCR data. If you use this package for research purposes,
 please cite the following article:
 }
 \details{

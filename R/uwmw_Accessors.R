@@ -25,8 +25,6 @@
 #' se(NBlogodds)
 #' # and so on...
 
-#' @name uwmw_Accessors
-#' @rdname uwmw_Accessors
 #' @aliases type coef vcov ref logor esttype getOrder housekeeping orderedBy pval se zval oddsRatio groupinfo type,uwmwRes-method
 #' @docType methods
 #' @include uwmwRes_Class.R uwmwEstimate_Class.R allGenerics.R S3Generics.R
