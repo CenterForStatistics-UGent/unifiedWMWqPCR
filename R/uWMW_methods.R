@@ -4,9 +4,9 @@
 #'
 #' This function carries out the unified Wilcoxon-Mann-Whitney test using either Overall normalization (O) or Housekeeping normalization (H) as reference (see De Neve et al., 2013). If the argument \code{housekeeping.names} is specified, housekeeping normalization is considered. Otherwise overall normalization is considered.
 #'
-#' The function uWMW can deal with data frames, matrices and \code{qPCRset} objects from the package \code{HTqPCR}. When using a data frame, you need to specify the arguments \code{groups}, \code{feat.names}, \code{subjects} and \code{value}; each one should contain the name of the related variable in the data frame.
+#' The function uWMW can deal with data frames and matrices. When using a data frame, you need to specify the arguments \code{groups}, \code{feat.names}, \code{subjects} and \code{value}; each one should contain the name of the related variable in the data frame.
 #'
-#' When using a matrix, each column is assumed to be a subject and each row a feature. The argument \code{groups} should contain as much values as there are columns in the matrix. Note that the method for \code{qPCRset} objects does nothing else but extract the data matrix and do the analysis. You still need to specify where the groups are to be found.
+#' When using a matrix, each column is assumed to be a subject and each row a feature. The argument \code{groups} should contain as much values as there are columns in the matrix.
 #'
 #' @param x An object containing the qPCR measurements. See details.
 #' @param groups A vector indicating the groups that need comparing, or a single character telling which variable in the data frame contains the groups. Make sure this vector is as long as the number of replicates in the data set.
@@ -49,14 +49,6 @@ setMethod("uWMW", signature="matrix",
     .uWMW(x,groups,housekeeping.names)
   }
   )
-
-#' @rdname uWMW-methods
-#' @aliases uWMW,qPCRset-method
-setMethod("uWMW",signature="qPCRset",
-  function(x, feat.names=NULL, ...){
-      dmat <- Biobase::exprs(x)
-      uWMW(dmat,feat.names=feat.names,...)
-  })
 
 #' @rdname uWMW-methods
 #' @aliases uWMW,data.frame-method

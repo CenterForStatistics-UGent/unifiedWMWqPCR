@@ -9,8 +9,13 @@
 \alias{volcanoplot,MArrayLM-method}
 \title{Make a volcano plot of the outcome of a uWMW test}
 \usage{
-\S4method{volcanoplot}{uwmwRes}(fit, esttype = c("logor", "or", "logodds",
-  "odds", "p"), transf.y = function(i) -log10(i), ref.y = -log10(0.05), ...)
+\S4method{volcanoplot}{uwmwRes}(
+  fit,
+  esttype = c("logor", "or", "logodds", "odds", "p"),
+  transf.y = function(i) -log10(i),
+  ref.y = -log10(0.05),
+  ...
+)
 
 \S4method{volcanoplot}{matrix}(fit, ...)
 

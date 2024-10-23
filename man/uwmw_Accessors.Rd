@@ -4,7 +4,6 @@
 \name{type}
 \alias{type}
 \alias{uwmw_Accessors}
-\alias{type}
 \alias{coef}
 \alias{vcov}
 \alias{ref}

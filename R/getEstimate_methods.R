@@ -33,7 +33,6 @@
 #' @param drop a logical value. If set to \code{TRUE} and neither \code{se} nor
 #' \code{ci} is calculated, the function returns a vector instead of
 #' an uwmwEstimate object.
-#' @param ... passes on arguments to the next method
 #'
 #' @return In general, a \code{\link{uwmwEstimate}} object with the
 #' requested estimate. See \code{\link{uwmwEstimate}} for details.

@@ -8,3 +8,8 @@ Changes:
  * Update help pages to include all correct arguments and usage sections
  * explicitly import all needed functions from graphics and stats
  * export the order method
+
+unifiedWMWqPCR v1.41.1 (Release date: 2024-10-23)
+======================
+
+This version is a maintenance update due to the deprecation of the HTqPCR package. We removed the method for HTqPCR classes.

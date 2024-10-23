@@ -25,8 +25,6 @@
 #' se(NBlogodds)
 #' # and so on...
 
-#' @name uwmw_Accessors
-#' @rdname uwmw_Accessors
 #' @aliases type coef vcov ref logor esttype getOrder housekeeping orderedBy pval se zval oddsRatio groupinfo type,uwmwRes-method
 #' @docType methods
 #' @include uwmwRes_Class.R uwmwEstimate_Class.R allGenerics.R S3Generics.R
@@ -34,7 +32,8 @@
 
 #' @return \code{type(x)} returns the type of uWMW carried out (i.e. O or H for using overall respectively housekeeping expression as a reference.)
 #' @rdname uwmw_Accessors
-#' @name type
+#' @name uwmw_Accessors
+#' @aliases type
 setMethod("type",signature(x="uwmwRes"),
           function(x) x@type)
 
