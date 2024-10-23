@@ -32,7 +32,8 @@
 
 #' @return \code{type(x)} returns the type of uWMW carried out (i.e. O or H for using overall respectively housekeeping expression as a reference.)
 #' @rdname uwmw_Accessors
-#' @name type
+#' @name uwmw_Accessors
+#' @aliases type
 setMethod("type",signature(x="uwmwRes"),
           function(x) x@type)
 

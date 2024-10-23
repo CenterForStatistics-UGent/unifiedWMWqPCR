@@ -12,6 +12,7 @@
 #' Or see \code{citation("unifiedWMWqPCR")}
 #'
 #' @import methods
+#' @importClassesFrom limma MArrayLM
 #'
 #' @name unifiedWMWqPCR-package
 #' @rdname unifiedWMWqPCR-package

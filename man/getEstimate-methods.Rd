@@ -34,8 +34,6 @@ interval is returned. If set to NULL, no confidence interval is returned.}
 \item{drop}{a logical value. If set to \code{TRUE} and neither \code{se} nor
 \code{ci} is calculated, the function returns a vector instead of
 an uwmwEstimate object.}
-
-\item{...}{passes on arguments to the next method}
 }
 \value{
 In general, a \code{\link{uwmwEstimate}} object with the
